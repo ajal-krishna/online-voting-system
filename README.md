@@ -95,7 +95,7 @@ This project demonstrates how web technologies can be used to create a secure an
 ![Add Candidate](screenshots/addcandidate.png)
 
 ### 🗳️ Voting Control
-![Voting Control](screenshots/votingcontrol.png)
+![Voting Control](screenshots/votingcontroloff.png)
 
 ### 📊 View Results
 ![View Results](screenshots/viewresult.png)
@@ -114,3 +114,4 @@ This project demonstrates how web technologies can be used to create a secure an
 
 ### ✅ Voting Completed
 ![Voting Completed](screenshots/votingcompleted.png)
+
