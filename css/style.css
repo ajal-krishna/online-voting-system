@@ -1,0 +1,461 @@
+/* ===== GENERAL ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Dark mode fallback / override when needed (e.g. login & admin) */
+body.dark,
+.login-page,
+.admin-page {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    color: #f1f5f9;
+}
+
+/* ===== HEADINGS ===== */
+h2 {
+    text-align: center;
+    color: #1f2937;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* ===== LINKS ===== */
+a {
+    text-decoration: none;
+    color: #3b82f6;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* ===== FORMS ===== */
+form {
+    margin-top: 24px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="email"],
+input[type="number"] {
+    width: 100%;
+    padding: 14px 16px;
+    margin: 8px 0 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ===== BUTTONS ===== */
+button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* ===== DASHBOARD MENU ===== */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 12px 0;
+}
+
+ul li a {
+    display: block;
+    background: #f3f4f6;
+    padding: 14px 18px;
+    border-radius: 8px;
+    color: #374151;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+ul li a:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateX(6px);
+}
+
+/* ===== VOTING CARDS ===== */
+.candidate-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.candidate-card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+}
+
+.candidate-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+}
+
+.candidate-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* ===== TABLE (RESULTS) ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+table th, table td {
+    border: 1px solid #e5e7eb;
+    padding: 14px 16px;
+    text-align: center;
+}
+
+table th {
+    background: #3b82f6;
+    color: white;
+    font-weight: 600;
+}
+
+/* ===== STATUS TEXT ===== */
+.success {
+    color: #10b981;
+    text-align: center;
+    font-weight: 600;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+.error {
+    color: #ef4444;
+    text-align: center;
+    font-weight: 600;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+/* ===== LOGIN PAGE BASIC LAYOUT ===== */
+.login-page {
+    min-height: 100vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    position: relative;
+    overflow: hidden;
+    color: #f1f5f9;
+}
+
+/* Layered animated orbs – smoother & more luxurious */
+.login-page::before,
+.login-page::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.login-page::before {
+    width: 540px;
+    height: 540px;
+    background: #a78bfa;
+    top: -30%;
+    left: -25%;
+    animation: orb-float 36s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.login-page::after {
+    width: 480px;
+    height: 480px;
+    background: #c084fc;
+    bottom: -35%;
+    right: -28%;
+    animation: orb-float 44s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95) reverse;
+}
+
+@keyframes orb-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(140px, 120px) scale(1.14); }
+}
+
+/* ===== LOGIN BOX – Premium Glassmorphism 2026 ===== */
+.login-box {
+    background: rgba(30, 41, 59, 0.27);
+    backdrop-filter: blur(26px) saturate(220%);
+    -webkit-backdrop-filter: blur(26px) saturate(220%);
+    border: 1px solid rgba(165, 180, 252, 0.19);
+    border-radius: 26px;
+    padding: 54px 48px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 
+        0 28px 70px rgba(0, 0, 0, 0.50),
+        inset 0 0 0 1px rgba(165, 180, 252, 0.15);
+    position: relative;
+    z-index: 1;
+    transition: all 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin: 24px;
+}
+
+.login-box:hover,
+.login-box:focus-within {
+    transform: translateY(-14px) scale(1.02);
+    box-shadow: 
+        0 48px 110px rgba(0, 0, 0, 0.62),
+        inset 0 0 0 1.8px rgba(165, 180, 252, 0.24);
+}
+
+/* Heading – elevated & premium */
+.login-box h2 {
+    margin-bottom: 40px;
+    color: #f1f5f9;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: -0.6px;
+    text-shadow: 0 4px 14px rgba(0,0,0,0.55);
+}
+
+/* ============================================= */
+/*   FIX INPUT ALIGNMENT + PREMIUM GLASS STYLE   */
+/* ============================================= */
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 17px 20px;
+    font-size: 16px;
+    font-family: inherit;
+    color: #f1f5f9;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(165, 180, 252, 0.25);
+    border-radius: 14px;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.login-box input::placeholder {
+    color: rgba(241, 245, 249, 0.45);
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #a78bfa;
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.24);
+}
+
+/* Error message – premium & smooth */
+.login-box .error {
+    color: #f87171;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 0 18px 0;
+    background: rgba(248, 113, 113, 0.14);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(248, 113, 113, 0.30);
+}
+
+/* ===== PREMIUM BUTTON – smoother, more luxurious ===== */
+button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #7c3aed 0%, #c084fc 50%, #a78bfa 100%);
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 
+        0 14px 42px rgba(124, 58, 237, 0.45),
+        inset 0 2px 0 rgba(255,255,255,0.26),
+        inset 0 -2px 0 rgba(0,0,0,0.16);
+    backdrop-filter: blur(14px) saturate(210%);
+    -webkit-backdrop-filter: blur(14px) saturate(210%);
+    background-size: 300% 300%;
+    animation: premiumFlow 15s ease infinite;
+}
+
+@keyframes premiumFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+button:hover,
+button:focus {
+    transform: translateY(-7px) scale(1.035);
+    box-shadow: 
+        0 36px 95px rgba(124, 58, 237, 0.70),
+        inset 0 2px 0 rgba(255,255,255,0.48),
+        inset 0 -2px 0 rgba(0,0,0,0.20),
+        0 0 0 4px rgba(124, 58, 237, 0.34);
+    animation-duration: 9s;
+}
+
+button:active {
+    transform: translateY(-2px) scale(0.97);
+    box-shadow: 0 12px 38px rgba(124, 58, 237, 0.50);
+}
+
+/* Shine & radial highlight – smoother */
+button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 35% 25%, rgba(255,255,255,0.40) 0%, transparent 70%);
+    opacity: 0.68;
+    transition: opacity 0.7s ease;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: -70%;
+    left: -130%;
+    width: 80%;
+    height: 240%;
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.58), transparent);
+    transform: skewX(-28deg);
+    transition: left 1s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+}
+
+button:hover::before { opacity: 1; }
+button:hover::after  { left: 150%; opacity: 1; }
+/* ===================================================== */
+/*   IMPROVED ADMIN DASHBOARD ALIGNMENT FIX v2          */
+/* ===================================================== */
+
+/* Make container fully transparent & full-width on dashboard pages */
+.admin-page .container,
+body:has(.dashboard-grid) .container {
+    background: transparent;
+    box-shadow: none;
+    padding: 0 24px;
+    max-width: 1480px;
+    margin: 70px auto 50px;
+}
+
+/* Reset any inherited light styles that might interfere */
+.dashboard-grid .dash-card {
+    background: rgba(30, 41, 59, 0.32);
+    backdrop-filter: blur(28px) saturate(240%);
+    border: 1px solid rgba(165, 180, 252, 0.18);
+}
+
+/* Center the grid perfectly and remove unwanted outer spacing */
+.dashboard-grid {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Ensure cards take full available space in row */
+.dashboard-grid .dash-card {
+    min-height: 280px;          /* consistent height for perfect alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional: stronger visual centering on very wide screens */
+@media (min-width: 1400px) {
+    .dashboard-grid {
+        padding: 0 40px;
+    }
+}
+/* ===================================================== */
+/*   FIX ADMIN DASHBOARD HEADING COLOR (WHITE)          */
+/* ===================================================== */
+
+body:has(.dashboard-grid) h2,
+.admin-page h2 {
+    color: #ffffff !important;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.65) !important;
+}
